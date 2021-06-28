@@ -1,101 +1,153 @@
-// Задача 10 - Регулярные выражения
-
-// (https?:\/\/[a-zA-Z0-9-_.]*)(\/.*\/)?(\?[\w=&]*)?(#.*\/?) -regex101.com
-
-
-let url = 'https://tech.onliner.by/2018/04/26/smart-do-200/?utm_source=main_tile&utm_medium=smartdo200#zag3';
-
-let parsUrl = function (url) {
-    let arr = [],
-        regExp = /(https?:\/\/[a-zA-Z0-9-_.]*)(\/.*\/)?(\?[\w=&]*)?(#.*\/?)/,
-        parsUrlArr = url.match(regExp)
-
-        for(let i = 1; i <=parsUrlArr.length; i++ ) {
-            arr.push(parsUrlArr[i])
-        }
-
-        return arr
-}
-console.log (parsUrl(url));
-
-// Задача 8 - Регулярные выражения
-
-let number = '+375292222222';
-
-let testnumber = (str)=>{
-    let expReg = /\+375\s?\(?[0-9]{2}\)?\s?-?\d{3}\s?-?\d{2}\s?-?\d{2}/,
-        result = expReg.test(str);
-
-        return result
+/*let user = {
+    name: "Alex",
+    sayHello: function (year, month){
+        console.log("hello " + this.name + year + month)
+    }
 }
 
-console.log(testnumber(number));
+let nik = {
+    name: 'Nike'
+}*/
 
-// Задача 12 - ФУнкции
+//user.sayHello.bind(nik)(' 2021.24.06')
 
-let firstName = "Алексей",
-    secondName = "Агеев",
-    lastName = "Викторович",
-    groupNumber = "fe110";
+//user.sayHello.apply(nik, [2021,07])
 
-let createofPrint = (firtsName,secondName,lastName,groupNumber) => {
-    let strOfHomeWork = `* Домашняя работа: «Функции» `,
-        informationOfStudents = `* Выполнил: студент гр. W4017`,
-        fio = `* ${secondName} ${firtsName} ${lastName}`,
-        arrData = [strOfHomeWork,informationOfStudents,fio],
-        max = 0,
-        maxStr = '',
-        stars = '';
+//user.sayHello.call(nik, 2021, 07)
 
-        for(let i = 0; i < arrData.length; i++) {
-            if(max < arrData[i].length ) {
-                max = arrData[i].length;
-                maxStr = arrData[i]
-            }
-        }
-        for(let i = 0; i <= maxStr.length+1; i++) {
-            stars +='*'
-        }
-
-        for(let i = 0; i < arrData.length; i++) {
-            for(let j = 0; j <= maxStr.length; j++) {
-                if(arrData[i][j] == undefined) {
-                    arrData[i] += ' '
-                }
-            }
-        }
-
-        console.log(stars)
-        console.log(arrData[0]+'*');
-        console.log(arrData[1]+'*');
-        console.log(arrData[2]+'*');
-        console.log(stars)
+/*let a = {
+    ab: '123',
+    ac: '145'
 }
 
-createofPrint(firstName, secondName, lastName, groupNumber )
+console.log(a)
 
-//Задача 13 - Функции
+let b = {
+}
 
-let email = 'tАest@gmail.com' 
+b = {...a}
 
-let cheack = (email) => {
-    email = email.toLowerCase();
-    let arr_ru = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ', 'э', 'ю', 'я'];
+console.log(b)
 
-    let cheackAplphabet = false;
+delete b.ac
+console.log( a)*/
 
-    for (let i = 0;i < email.length; i++) {
-        if (arr_ru.includes(email[i])){
-            console.log(`рус = ${email[i]}`)
-            cheackAplphabet = true;
-            break;
+/*let contactsBook = function() {
+    let contactArr = []
+
+    this.add = function(name, phone, email) {
+        let user = {
+            name,
+            phone,
+            email
+        }
+        contactArr.push(user)
+    }
+
+    this.delete = function(id){
+        if(contactArr[id]) {
+            contactArr.splice(id)
         }
     }
-    
-    if (cheackAplphabet) {return}
-    else {}
 
-    return cheackAplphabet 
+    this.show = function () {
+        return contactArr
+    }
 }
 
-console.log(cheack(email));
+
+let book = new contactsBook()
+
+console.log(book)*/
+
+//созд 3 метода. 1 доб массив. 2 функ показывает что лежит в записной книжке. 3 метод удалить объект из массива
+
+/*let todo = function () {
+    let todoArr = []
+
+    this.add = function(todo) {
+        let task = {
+            todo:todo,
+            flag:true
+        }
+    todoArr.push(task)
+    this.show()
+    }
+    this.show = function() {
+        console.log(todoAdd)
+    }
+    this.checked = function(id) {
+        if(todoArr[id]) {
+            todoArr[id].flag = false;
+            this.show
+        }
+    }
+}
+
+let tod = new Todo();
+
+tod.add('learn js');*/
+
+let contactBook = function () {
+    let contactArr = [];
+
+    document.write(`<h2 class="h2_title"> Список пуст </h2>`)
+
+    let create = function(name, phone, email) {
+        let contactUser = {name,phone,email}
+        return contactUser
+    }
+    this.add = function () {
+        contactArr.push(create(prompt('Имя'), 
+        prompt('Телефон'),
+        prompt('Email')))
+
+        this.show();
+    }
+
+    this.delete = function (id) {
+        contactArr.splice(id,1)
+        if (contactArr.length == 0) {
+            let removeUl = document.querySelector('.lists')
+            removeUl.remove()
+            document.write(`<h2 class="h2_title"> Список пуст </h2>`)
+            return
+        }
+        this.show()
+    }
+
+    this.show = function () {
+        let elementUl = document.querySelector('.lists')
+
+        if(!elementUl) {
+            let h2 = document.querySelector('.h2_title')
+            h2.remove();
+
+            elementUl = document.createElement('ul')
+            elementUl.classList.add('lists')
+            document.body.appendChild(elementUl);
+        }
+
+        console.log(elementUl)
+
+        elementUl.innerHTML=''
+
+        contactArr.forEach(function(items,index){
+            let elementLi = document.createElement('li')
+            elementLi.innerHTML = `<strong>Имя:</strong> ${items.name}<br> <strong> Телефон:</strong> ${items.phone}<br>  <strong> Email:</strong> ${items.email} <br> <button id='${i}'> Delete ${items.name}</button>`
+
+            elementUl.appendChild(elementLi)
+        })
+
+        /*let elementUl = document.createElement('ul')
+        document.body.appendChild(elementUl);*/
+
+        /*for( let i = 0; i < contactArr.length; i++) {
+            let elementLi = document.createElement('li')
+            elementLi.innerHTML = `<strong>Имя:</strong> ${contactArr[i].name}<br> <strong> Телефон:</strong> ${contactArr[i].phone}<br>  <strong> Email:</strong> ${contactArr[i].email} <br> <button id='${i}'> Delete ${contactArr[i].name}</button>`
+
+            elementUl.appendChild(elementLi)   
+        }
+    }
+}*/
+//let book = new contactBook();
